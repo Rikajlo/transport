@@ -34,12 +34,12 @@ include_once("functions.php");
 <body>
 <div class="container-fluid text-center">
     <div class="row content">
-        <div class="col-sm-3 content1-left" style="height:100%">
+        <div class="col-sm-3 content1-left">
             <?php
             include("sidemenu.php")
             ?>
         </div>
-        <div class="col-sm-9 content1-right" style="height:100%">
+        <div class="col-sm-9 content1-right" style="min-height: 100%;">
             <?php
             include("popupnews.php");
             ?>

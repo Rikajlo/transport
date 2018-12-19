@@ -27,7 +27,7 @@ include('menu.php');
 
         <div class="col-lg-9 col-md-9 col-12 h4">
             <?php
-            if($line){
+            if(@$line){
                 terminusschedule($line);
             } else {
            listofbuslines();

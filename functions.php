@@ -312,6 +312,60 @@ function getScheduleDate() {
     return $schedDate;
 }
 
+///////////
+///
+///
+///     GETS THE time AGO FORM TIMESPTAMP
+///
+///
+/// /////////
+function timeAgo($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
+
+///////////
+///
+///
+///     <option>S FOR SELECTING ALL LINE NUMBERS
+///
+///
+/// /////////
+function selectlines($con){
+    $sql = "SELECT DISTINCT Line_ShortName FROM `buslines`";
+    $result = $con->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row["Line_ShortName"] . "' name='" . $row["Line_ShortName"] . "'>" . $row["Line_ShortName"] . "</option>";
+        }
+    }
+}
 
 
 ?>
