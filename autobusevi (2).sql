@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `bikecompanies` (
   `Telephone_2` varchar(20) DEFAULT NULL,
   `Logo_Image` varchar(70) DEFAULT NULL,
   PRIMARY KEY (`ID_Bike`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoD AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -48,19 +48,12 @@ CREATE TABLE IF NOT EXISTS `buscomments` (
   `ID_Comment` int(11) NOT NULL AUTO_INCREMENT,
   `ID_News` int(11) NOT NULL,
   `ID_User` int(11) NOT NULL,
-  `Comment_Content` varchar(512) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Comment_Content` varchar(512),
   `Time_Posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Show_Lines` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Show_Stops` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Show_Lines` varchar(100),
+  `Show_Stops` varchar(100),
   PRIMARY KEY (`ID_Comment`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
-
---
--- Dumping data for table `buscomments`
---
-
-INSERT INTO `buscomments` (`ID_Comment`, `ID_News`, `ID_User`, `Comment_Content`, `Time_Posted`, `Show_Lines`, `Show_Stops`) VALUES
-(44, 1, 1, 'yep', '2018-12-19 21:41:43', '', '');
+) ENGINE=InnoDB AUTO_INCREMENT=45 ;
 
 -- --------------------------------------------------------
 
@@ -76,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `buslines` (
   `Line_Text` varchar(10) DEFAULT NULL,
   `Line_Side` int(11) NOT NULL,
   PRIMARY KEY (`ID_Line`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4103 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4103 ;
 
 --
 -- Dumping data for table `buslines`
@@ -181,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `busnews` (
   `Show_Lines` varchar(100) NOT NULL,
   `Show_Stops` varchar(100) NOT NULL,
   PRIMARY KEY (`ID_News`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `busnews`
@@ -204,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `busroutes` (
   `Stop_Name` varchar(50) DEFAULT NULL,
   `Dist_Minutes` int(11) NOT NULL,
   PRIMARY KEY (`ID_Route`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=827 ;
+) ENGINE=InnoDB AUTO_INCREMENT=827 ;
 
 --
 -- Dumping data for table `busroutes`
@@ -1050,7 +1043,7 @@ CREATE TABLE IF NOT EXISTS `busschedule` (
   `Departure` time NOT NULL,
   `Day_Type` int(11) NOT NULL,
   PRIMARY KEY (`ID_Schedule`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=820 ;
+) ENGINE=InnoDB AUTO_INCREMENT=820 ;
 
 --
 -- Dumping data for table `busschedule`
@@ -1888,7 +1881,7 @@ CREATE TABLE IF NOT EXISTS `busspecialdate` (
   `Sp_Date` date NOT NULL,
   `Sp_DayType` int(11) NOT NULL,
   PRIMARY KEY (`ID_Special`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoD AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1901,7 +1894,7 @@ CREATE TABLE IF NOT EXISTS `busstops` (
   `Stop_Name` varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Stop_Active` int(11) DEFAULT '1',
   PRIMARY KEY (`ID_Stop`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14116 ;
+) ENGINE=InnoDB AUTO_INCREMENT=14116 ;
 
 --
 -- Dumping data for table `busstops`
@@ -2185,7 +2178,7 @@ CREATE TABLE IF NOT EXISTS `favouritelines` (
   `ID_User` int(11) NOT NULL,
   `ID_Line` int(11) NOT NULL,
   PRIMARY KEY (`ID_FavLine`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `favouritelines`
@@ -2207,7 +2200,7 @@ CREATE TABLE IF NOT EXISTS `favouritelinestop` (
   `ID_Stop` int(11) NOT NULL,
   `Line_Direction` int(11) NOT NULL,
   PRIMARY KEY (`ID_FavLineStop`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoD AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -2220,7 +2213,7 @@ CREATE TABLE IF NOT EXISTS `favouritestops` (
   `ID_User` int(11) NOT NULL,
   `ID_Stop` int(11) NOT NULL,
   PRIMARY KEY (`ID_FavStop`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `favouritestops`
@@ -2247,7 +2240,7 @@ CREATE TABLE IF NOT EXISTS `taxicompanies` (
   `Telephone_2` varchar(20) DEFAULT NULL,
   `Logo_Image` varchar(70) DEFAULT NULL,
   PRIMARY KEY (`ID_Taxi`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoD AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -2267,7 +2260,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `IsModerator` int(11) NOT NULL DEFAULT '0',
   `UserAvatar` varchar(60) NOT NULL,
   PRIMARY KEY (`ID_User`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `users`
