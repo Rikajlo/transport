@@ -2,6 +2,7 @@
 // News for the news.php page are selected here
 include_once("db_config.php");
 include_once('menu.php');
+include_once('functions.php');
 
 ?>
 <!DOCTYPE html>
@@ -15,19 +16,10 @@ include_once('menu.php');
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-            <?php
+<?php
 @$newsid = $_GET['newsid'];
-if(isset($_POST['newcomment'])){
-    $newcommnet = $_POST['newcomment'];
-    $newsid = $_POST['newsid'];
-    $line='';
-    foreach ($_POST['lines'] as $lines)
-        $line .= " ".$lines;
-    $query = "INSERT into `buscomments` (ID_News, ID_User, Comment_Content, Show_Lines)
-              VALUES ($newsid,1,'$newcommnet','$line')";//$_SESSION["ID_User"]
-    $result = mysqli_query($con,$query);
-    header('Location: news.php?newsid='.$newsid.'');
-}
+addComment();
+
 $sql = "SELECT * FROM `busnews` WHERE ID_News=$newsid";
 $result = $con->query($sql);
 
@@ -50,28 +42,9 @@ if ($result->num_rows > 0) {
                 echo "</select>
                 <button type=\"submit\" class=\"btn btn-primary\" name=\"submit\"> Post Comment </button>
             </form>
-        </div>";
+            </div>";
 
-        $sql = "SELECT *, u.Username as uname FROM buscomments b JOIN users u ON b.ID_User = u.ID_User 
-              WHERE ID_News=$newsid ORDER BY Time_Posted DESC";
-        $result = $con->query($sql);
-
-
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-                $showlines = explode(" ",$row["Show_Lines"]);
-                echo "<div class=\"w3-panel w3-light-gray w3-card-4\">
-                    <p><b>" . $row["uname"] . "</b> &nbsp; <small>" . timeAgo($row["Time_Posted"]) . "</small></p>
-                    <p>" . $row["Comment_Content"] . "<br/></p>";
-                    foreach($showlines as $line){
-                    echo "<a href='buslines.php?line=$line'>$line</a> ";};
-                echo "</div>";
-            }
-               echo "</div>";
-        } else {
-            echo "NO COMMENTS FOR THIS POST.";
-        }
+        getComment($newsid);
     }
 }
 ?>
