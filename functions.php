@@ -63,7 +63,7 @@ function terminusschedule($linesearch){
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
-            echo $row["Line_ShortName"].' --- '. $row["Line_Name"];
+            echo '<h3>'.$row["Line_ShortName"].' - '. $row["Line_Name"].'</h3>';
         }
     } else {
         echo "Line not selected!";
@@ -71,10 +71,7 @@ function terminusschedule($linesearch){
     }
 
 ?>
-<div class="row">
-    <div class="col-6 headdiv">Vreme u odlasku</div><div class="col-6 headdiv">Vreme u povratku</div>
-</div>
-    <div class="row">
+
         <?php
 
         $selected_line=$linesearch;
@@ -103,21 +100,20 @@ function terminusschedule($linesearch){
                 ORDER BY `busschedule`.`Departure` ASC";
 
         $result = mysqli_query($con, $sql);
-        echo '
-    <div class="test col-3"><ul id="dep"><li>Radni dan</li>';
+
+
 
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
-                echo '<li class="depa sch">'.substr($row["Polazak"], 0,5).' '.$row["Shorten"].'</li> ';
+                $first[]=substr($row["Polazak"], 0,5).' '.$row["Shorten"];
             }
         } else {
-            echo "---";
+            $first[]="---";
         }
 
 
-        echo '
-    </ul></div>';
+
 
 
 
@@ -132,25 +128,19 @@ function terminusschedule($linesearch){
 
         $result = mysqli_query($con, $sql);
 
-        echo '
-    <div class="test col-3"><ul id="dep"><li>Subota, Nedelja i državni praznici</li>';
-
        
 
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
 
-
-                echo '
-    <li class="depa sch">'.substr($row["Polazak"], 0,5).' '.$row["Shorten"].'</li>';
+$second[]=substr($row["Polazak"], 0,5).' '.$row["Shorten"];
             }
         } else {
-            echo "---";
+            $second[]="---";
         }
 
-        echo '
-    </ul></div>';
+
 
         $sql = "SELECT `buslines`.Line_ShortName, `buslines`.Line_Text AS Shorten, `busschedule`.Departure AS Polazak, `busschedule`.Day_Type FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
 WHERE ( (((`buslines`.Line_ShortName)=\"$selected_line\")) OR ((`buslines`.Line_ShortName)=\"$selected_line2\"))  AND ((`buslines`.Line_Side)=0) AND ((`busschedule`.Day_Type)=1)
@@ -159,25 +149,20 @@ ORDER BY `busschedule`.Departure ASC";
 
         $result = mysqli_query($con, $sql);
 
-        echo '
-    <div class="test col-3"><ul id="dep"><li>Radni dan</li>';
+
 
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
-            var_dump($result);
+
             while($row = mysqli_fetch_assoc($result)) {
 
 
-                echo '
-    <li class="depa sch">'.substr($row["Polazak"], 0,5).' '.$row["Shorten"].'</li> 
-';
+                $third[]=substr($row["Polazak"], 0,5).' '.$row["Shorten"];
             }
         } else {
-            echo "---";
+            $third[]="---";
         }
 
-        echo '
-    </ul></div>';
 
         $sql = "SELECT `buslines`.Line_ShortName, `buslines`.Line_Text AS Shorten, `busschedule`.Departure AS Polazak, `busschedule`.Day_Type FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
 WHERE ( (((`buslines`.Line_ShortName)=\"$selected_line\")) OR ((`buslines`.Line_ShortName)=\"$selected_line2\"))  
@@ -188,27 +173,62 @@ ORDER BY `busschedule`.Departure ASC";
 
         $result = mysqli_query($con, $sql);
 
-        echo '
-    <div class="test col-3"><ul id="dep"><li>Subota, Nedelja i državni praznici</li>';
 
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
 
 
-                echo '
-    <li class="depa sch">'.substr($row["Polazak"], 0,5).' '.$row["Shorten"].'</li> 
-';
+                $fourth[]=substr($row["Polazak"], 0,5).' '.$row["Shorten"];
             }
         } else {
-            echo "---";
+            $fourth[]="---";
         }
 
-        echo '
-    </ul></div>';
-        ?>
-    </div></div>
-<?php
+
+    echo '<table class="table table-sm">
+  <thead>
+    <tr bgcolor="#00bfff">
+      <th scope="col" style="width:25%">Radni Dan</th>
+      <th scope="col" style="width:25%">Vikend i drž. praznici</th>
+      <th scope="col" style="width:25%">Vikend i drž. praznici</th>
+      <th scope="col" style="width:25%">Radni Dan</th>
+    </tr>
+  </thead>
+  <tbody>';
+        $ar1=sizeof($first);
+    $ar2=sizeof($second);
+    $ar3=sizeof($third);
+    $ar4=sizeof($fourth);
+
+       $tablelength=$ar1;
+       if($ar2>=$ar1){
+           $tablelength=$ar2;
+       }
+       if($ar3>=$ar2){
+           $tablelength=$ar3;}
+
+       if($ar4>=$ar3) {
+           $tablelength = $ar4;
+       }
+
+
+
+       for($i=0;$i<=$tablelength;$i++){
+      echo '
+    <tr>
+      <td>';if(isset($first[$i])){echo $first[$i];}; echo '</td>';
+      echo'<td>';if(isset($second[$i])){echo $second[$i];}; echo '</td>';
+           echo'<td>';if(isset($third[$i])){echo $third[$i];}; echo '</td>';
+           echo'<td>';if(isset($fourth[$i])){echo $fourth[$i];}; echo '</td>';
+    echo'</tr>
+ 
+    ';}
+      echo'
+  </tbody>
+</table>';
+
+
 }
 
 function getTimeDiff($dtime,$atime)
