@@ -1,7 +1,5 @@
 <?php
 
-@session_start();
-
 echo '
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -19,25 +17,10 @@ echo '
       </li>
       <li class="nav-item">
         <a class="nav-link" href="news.php">News</a>
-         </li>
-         <li class="nav-item">
-        <a class="nav-link" href="#">Taxi</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Rent a Bike</a>
-      </li>';
-if(isset($_SESSION['ID_User'])){
-echo'
-      <li class="nav-item">
-        <a class="nav-link" href="logout.php">Log out</a>
-      </li>}'; }
-      else {
-    echo'
-      <li class="nav-item">
-        <a class="nav-link" href="login.php">Log in</a>
-      </li>';
-      }
-      echo'
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
     </ul>
   </div>
 </nav>
