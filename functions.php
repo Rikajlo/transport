@@ -1,5 +1,6 @@
 <?php
 include_once('db_config.php');
+@session_start();
 //////////////////
 ///
 ///  list of bus lines
@@ -73,14 +74,6 @@ function terminusschedule($linesearch){
 <div class="row">
     <div class="col-6 headdiv">Vreme u odlasku</div><div class="col-6 headdiv">Vreme u povratku</div>
 </div>
-
-    <div class="row">
-        <div class="col-3">Radni dan</div>
-        <div class="col-3">Radni dan</div>
-        <div class="col-3">Radni dan</div>
-        <div class="col-3">Radni dan</div>
-    </div>
-
     <div class="row">
         <?php
 
@@ -102,18 +95,16 @@ function terminusschedule($linesearch){
             $selected_line2="8A";
         }
 
-        $sql = "SELECT 
-`buslines`.Line_ShortName, 
-`buslines`.Line_Text AS Shorten,
-`busschedule`.Departure AS Polazak, 
-`busschedule`.Day_Type FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
-WHERE ( (((`buslines`.Line_ShortName)=\"$selected_line\")) OR ((`buslines`.Line_ShortName)=\"$selected_line2\"))  AND ((`buslines`.Line_Side)=1) AND ((`busschedule`.Day_Type)=1)
-ORDER BY `busschedule`.`Departure` ASC";
-
+        $sql = "SELECT `buslines`.Line_ShortName, `buslines`.Line_Text AS Shorten, 
+                `busschedule`.Departure AS Polazak, `busschedule`.Day_Type 
+                FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
+                WHERE ( (((`buslines`.Line_ShortName)=\"$selected_line\")) OR ((`buslines`.Line_ShortName)=\"$selected_line2\")) 
+                    AND ((`buslines`.Line_Side)=1) AND ((`busschedule`.Day_Type)=1)
+                ORDER BY `busschedule`.`Departure` ASC";
 
         $result = mysqli_query($con, $sql);
         echo '
-    <div class="test col-3">';
+    <div class="test col-3"><ul id="dep"><li>Radni dan</li>';
 
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
@@ -131,17 +122,18 @@ ORDER BY `busschedule`.`Departure` ASC";
 
 
 
-        $sql = "SELECT `buslines`.Line_ShortName, `buslines`.Line_Text AS Shorten, `busschedule`.Departure AS Polazak, `busschedule`.Day_Type FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
-WHERE ( (((`buslines`.Line_ShortName)=\"$selected_line\")) OR ((`buslines`.Line_ShortName)=\"$selected_line2\"))  
-AND ((`buslines`.Line_Side)=1) 
-AND ((((`busschedule`.Day_Type)=2))  OR ((`busschedule`.Day_Type)=3)  OR ((`busschedule`.Day_Type)=4))
-ORDER BY `busschedule`.Departure ASC";
+        $sql = "SELECT `buslines`.Line_ShortName, `buslines`.Line_Text AS Shorten, `busschedule`.Departure AS Polazak, 
+                `busschedule`.Day_Type FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
+                WHERE ( (((`buslines`.Line_ShortName)=\"$selected_line\")) OR ((`buslines`.Line_ShortName)=\"$selected_line2\"))  
+                    AND ((`buslines`.Line_Side)=1) AND ((((`busschedule`.Day_Type)=2)) 
+                    OR ((`busschedule`.Day_Type)=3) OR ((`busschedule`.Day_Type)=4))
+                ORDER BY `busschedule`.Departure ASC";
 
 
         $result = mysqli_query($con, $sql);
 
         echo '
-    <div class="test col-3"><ul>';
+    <div class="test col-3"><ul id="dep"><li>Subota, Nedelja i državni praznici</li>';
 
        
 
@@ -168,11 +160,11 @@ ORDER BY `busschedule`.Departure ASC";
         $result = mysqli_query($con, $sql);
 
         echo '
-    
     <div class="test col-3"><ul id="dep"><li>Radni dan</li>';
 
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
+            var_dump($result);
             while($row = mysqli_fetch_assoc($result)) {
 
 
@@ -376,11 +368,12 @@ function addComment() {
     if(isset($_POST['newcomment'])){
         $newcommnet = $_POST['newcomment'];
         $newsid = $_POST['newsid'];
+        @$ID_User=$_SESSION['ID_User'];
         $line='';
         foreach ($_POST['lines'] as $lines)
             $line .= " ".$lines;
         $query = "INSERT into `buscomments` (ID_News, ID_User, Comment_Content, Show_Lines)
-              VALUES ($newsid,1,'$newcommnet','$line')";//$_SESSION["ID_User"]
+              VALUES ($newsid,$ID_User,'$newcommnet','$line')";
         $result = mysqli_query($con,$query);
         header('Location: news.php?newsid='.$newsid.'');
     }

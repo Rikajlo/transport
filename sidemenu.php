@@ -1,14 +1,11 @@
 ﻿<?php
 //include auth.php file on all secure pages
-
-@session_start();
-
-
-
 include_once("db_config.php");
-
+@session_start();
 include_once("functions.php");
+
 @$ID_User=$_SESSION['ID_User'];
+
 ?>
 <!DOCTYPE html>
 <head>

@@ -28,7 +28,6 @@ include('menu.php');
 
 <div class="row">
     <div class="col-lg-3 col-md-3 col-12"><?php include('sidemenu.php'); ?></div>
-
         <div class="col-lg-9 col-md-9 col-12 h4">
             <?php
             if(@$line){
