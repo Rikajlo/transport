@@ -151,7 +151,8 @@ include_once("functions.php");
 </table>";
 
                 } else {
-                    echo "Niste uneli pretragu / ili postoji 0 rezultata.";
+                    echo "Niste uneli pretragu / ili postoji 0 rezultata.<p> </p>
+                     <a href='/taxi.php'>Kliknite ovde za pretragu taxi vozila.</a>";
                 }
                 ?>
             </div>

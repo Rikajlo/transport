@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //include auth.php file on all secure pages
 include_once("db_config.php");
 include_once("menu.php");
@@ -60,7 +60,7 @@ $date=date("H:i:s");
 
                 <form name="test" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <select name="stopname">
-                        <option value="">Izaberite stanicu</option>
+                        <option value="">Select stop</option>
                         <?php
                         while ($row = mysqli_fetch_array($result))
                         {
@@ -101,11 +101,17 @@ if(isset($_POST["stopname"])) {
    and ($querystops)
    and calendar.service_id=trips.service_id
    and stop_times.trip_id=trips.trip_id
-   and (   (dayofweek('2019-01-09')=4 and calendar.wednesday=1)
-          ) and stop_times.departure_time > '$date'
-   and not exists (select 1
-                     from calendar_dates
-                    where calendar_dates.date='2019-01-09'
+ AND(
+(
+DAYOFWEEK('2019-01-13') = 1 AND calendar.sunday = 1
+)
+) AND stop_times.departure_time > '$date' AND NOT EXISTS(
+SELECT
+1
+FROM
+calendar_dates
+WHERE
+calendar_dates.date ='2019-01-13'
                       and calendar_dates.date between
 calendar.start_date and calendar.end_date
                       and
@@ -133,7 +139,8 @@ echo '<h3> Departures from '.$stopname.'</h3>';
 
         }
     } else {
-        echo "Niste uneli pretragu / ili postoji 0 rezultata.";
+        echo "No result.
+       ";
     }
     echo " </tbody>
 </table>";

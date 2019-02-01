@@ -78,7 +78,7 @@ echo 'test';
                         echo'
                     
                         <table class="biketable">
-                    <tr><td rowspan="6" class="tabimg"><img class="img-fluid" src="images/bike/' . $row["Logo_Image"] . '" class="imgfilm" alt="Taxiimage"/></td>
+                    <tr><td rowspan="6" class="tabimg"><img class="img-fluid" src="images/bike/' . $row["Logo_Image"] . '" class="imgfilm2" alt="Taxiimage"/></td>
                         <td class="naziv"><h3>' . $row2["Name_B"] . '</h3></td></tr>
                     <tr><td class="zanr">' . $row2["Address_B"] . ' </td></tr>
                    

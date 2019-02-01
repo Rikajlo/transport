@@ -23,6 +23,10 @@ echo '
       </li>
       <li class="nav-item">
         <a class="nav-link" href="news.php">News</a>
+      </li>
+   
+      <li class="nav-item">
+        <a class="nav-link" href="../index.php">Visit Subotica!</a>
       </li>';
         if(isset($_SESSION['ID_User'])){
         echo'
