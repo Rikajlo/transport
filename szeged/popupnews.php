@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // Pop up with the latest news for index.php
 include_once("db_config.php");
 ?>

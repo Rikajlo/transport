@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //include auth.php file on all secure pages
 include_once("db_config.php");
 include_once("menu.php");

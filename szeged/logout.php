@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 // Destroys all sessions.
 if(session_destroy())

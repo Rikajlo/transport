@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // News for the news.php page are selected here
 include_once("db_config.php");
 @session_start();

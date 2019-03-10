@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 // Connection to the database, and query related stuff to be included.
 // THIS FILE IS FINISHED AND NEEDS NO FURTHER EDITING.

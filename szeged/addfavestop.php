@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include("db_config.php");
 
 // Inserts values into favouritestops table if not exists and redirects to the previous page.
