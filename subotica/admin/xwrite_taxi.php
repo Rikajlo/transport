@@ -26,71 +26,28 @@ include_once ('../db_config.php');
 @$taxitelephone2 = stripslashes($_POST['taxitelephone2']);
 @$taxitelephone2 = mysqli_real_escape_string($con,$taxitelephone2);
 
-@$taxilogo = stripslashes($_POST['uploadedimage']);
+@$taxilogo = stripslashes($_POST['fileToUpload']);
 @$taxilogo = mysqli_real_escape_string($con,$taxilogo);
 
 @$taxiid = stripslashes($_POST['taxiid']);
 @$taxiid = mysqli_real_escape_string($con,$taxiid);
 
-@$upload=$_POST['uploadedimage'];
+@$upload=$_POST['fileToUpload'];
 
 
-function GetImageExtension($imagetype)
+
+if(!empty($_FILES['fileToUpload']))
 {
-    if (empty($imagetype)) return false;
+    $path = "../images/taxi/";
+    $taxilogo= date('Y-m-d-H-i-s').basename( $_FILES['fileToUpload']['name']);
+    $path = $path . $taxilogo;
 
-    switch ($imagetype) {
-
-        case 'image/bmp':
-            return '.bmp';
-        case 'text/pdf':
-            return '.pdf';
-        case 'application/pdf':
-            return '.pdf';
-        case 'image/gif':
-            return '.gif';
-        case 'image/jpeg':
-            return '.jpg';
-        case 'image/png':
-            return '.png';
-        case 'text/msword':
-            return '.doc';
-        case 'application/msword':
-            return '.doc';
-        case 'application/vnd.ms-word.document.macroenabled.12':
-            return '.docm';
-        case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-            return '.docx';
-        case 'application/vnd.ms-excel':
-            return '.xls';
-        case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-            return '.xlsx';
-
-
-        default:
-            return false;
+    if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $path)) {
+        echo "The file ".  basename( $_FILES['fileToUpload']['name']).
+            " has been uploaded";
+    } else{
+        echo "There was an error uploading the file, please try again!";
     }
-}
-
-
-
-if (!empty($_FILES["uploadedimage"]["name"])) {
- echo 'test';
-    $file_name = $_FILES["uploadedimage"]["name"];
-    $temp_name = $_FILES["uploadedimage"]["tmp_name"];
-    $imgtype = $_FILES["uploadedimage"]["type"];
-    $ext = GetImageExtension($imgtype);
-    $imagename = 'logo' . '-'. date("d-m-Y") . "-" . time() . $ext;
-    $target_path = "/images/taxi/".$imagename;
-    echo "test";
-} else {
-    echo 'ne ulazi';
-}
-if (move_uploaded_file(@$_FILES["uploadedimage"]["tmp_name"], @$target_path)) {
-    echo "The file " . basename(@$_FILES["uploadedimage"]["name"]) . " has been uploaded.";
-    $taxilogo=$target_path;
-} else {
-    echo "Sorry, there was an error uploading your file.";
 }
 
 

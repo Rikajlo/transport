@@ -44,7 +44,7 @@ include_once ('../db_config.php'); ?>
                     <input class="w3-input w3-border w3-light-grey" type="text" name="taxitelephone2">
 
                     <label class="w3-text-teal"><b>Logo:</b></label>
-                    <input class="w3-input w3-border w3-light-grey" type="file"  name="uploadedimage">
+                    <input class="w3-input w3-border w3-light-grey" type="file"  name="fileToUpload">
 
 
                 </div>
