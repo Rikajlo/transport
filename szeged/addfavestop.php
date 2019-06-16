@@ -1,11 +1,10 @@
 ﻿<?php
 include("db_config.php");
-@session_start();
 
 // Inserts values into favouritestops table if not exists and redirects to the previous page.
 // THIS FILE IS FINISHED AND NEEDS NO FURTHER EDITING.
 
-$postUserID = stripslashes($_SESSION['ID_User']);
+$postUserID = stripslashes($_POST['UserID']);
 $postUserID = mysqli_real_escape_string($con,$postUserID);
 $postStopID = stripslashes($_POST['StopID']);
 $postStopID = mysqli_real_escape_string($con,$postStopID);
