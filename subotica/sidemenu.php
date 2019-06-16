@@ -7,13 +7,7 @@ include_once("functions.php");
 @$ID_User=$_SESSION['ID_User'];
 
 ?>
-
-    <?php include_once("meta/meta.php"); ?>
-
-
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
 
 <?php if(!isset($_SESSION['username'])){
     echo 'Prijavite se da biste omogućili prikaz omiljenih stajališta i omiljenih linija';
@@ -295,6 +289,6 @@ ORDER BY `busschedule`.`Departure` ASC limit 5";
     }
 
     echo '
-    </ul></div>';?>
-</div>
-<?php }; ?>
+    </ul></div>
+</div>'; };
+?>

@@ -5,4 +5,4 @@
  * Date: 6/16/19
  * Time: 1:35 AM
  */
-echo 'GO TO /szeged or /subotica';
+header("Location: subotica/");
