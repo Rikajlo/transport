@@ -28,7 +28,7 @@ include_once ('../db_config.php'); ?>
                 echo'
 
     <div id="Addtaxi">
-        <form class="w3-container" method="post" action="xwrite_taxis.php">
+        <form class="w3-container" method="post" action="xwrite_taxi.php">
             <div class="w3-row-padding">
                <div class="w3-half">
                <input type="hidden" value="edit" name="edit">
@@ -61,7 +61,7 @@ include_once ('../db_config.php'); ?>
                     <input class="w3-input w3-border w3-light-grey" type="text" name="taxitelephone2" value="'.$record['Telephone_2'].'">
 
                     <label class="w3-text-teal"><b>Putanja ka logou:</b></label>
-                    <input class="w3-input w3-border w3-light-grey" type="text" name="uploadedimage" value="'.$record['Logo_Image'].'">
+                    <input class="w3-input w3-border w3-light-grey" type="text" name="fileToUpload" value="'.$record['Logo_Image'].'">
 
                      </div>
             </div>
