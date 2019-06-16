@@ -3,6 +3,5 @@
  * Created by PhpStorm.
  * User: daniel
  * Date: 6/16/19
- * Time: 1:35 AM
+ * Time: 3:23 PM
  */
-echo 'GO TO /szeged or /subotica';
