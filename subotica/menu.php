@@ -19,13 +19,13 @@ echo '
         <a class="nav-link" href="taxi.php">Taxi</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="rentabike.php">Rent-a-Bike</a>
+        <a class="nav-link" href="bike.php">Rent-a-Bike</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="news.php">News</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="szeged/index.php">Visit Szeged!</a>
+        <a class="nav-link" href="../szeged/index.php">Visit Szeged!</a>
       </li>';
         if(isset($_SESSION['ID_User'])){
         echo'
