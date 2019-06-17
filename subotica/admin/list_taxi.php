@@ -3,6 +3,7 @@ include_once ('../db_config.php'); ?>
 
 <html>
 <head>
+    <?php include('../meta/meta.php'); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>

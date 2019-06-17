@@ -63,8 +63,8 @@ GPS_Stop_2='$taxistop2' ,Address_Ln1='$taxiaddress1' ,Address_Ln2='$taxiaddress2
     $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 
 }
-/*
+
 header("Location: list_taxis.php");
 exit();
-*/
+
 ?>
