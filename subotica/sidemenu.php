@@ -8,70 +8,33 @@ include_once("functions.php");
 
 if(!isset($_SESSION['username'])){
     echo 'Prijavite se da biste omogućili prikaz omiljenih stajališta i omiljenih linija';
-}else{  ?>
+}else { ?>
 
-    <div class="busdeparture">
-        <p>Dobrodošli <?php echo $_SESSION['username']; ?>!</p>
+    <?php
 
+    @$Stop_Name = $_POST["Stop_Name"];
+    @$linedirection = $_POST["linedirection"];
+    $date = date("H:i:s");
 
-        <br/>
-        <?php
+    $scheduleday = getScheduleDate();
 
-        @$Stop_Name=$_POST["Stop_Name"];
-        @$linedirection=$_POST["linedirection"];
-        $date=date("H:i:s");
-
-        $scheduleday=getScheduleDate();
-
-
-        ?>
-
-
-        <?php
-        /*
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-
-                    $curID_Stop = $row["ID_StopFav"];
-
-
-                    echo  '<div class="favouritedepartures">
-            <div class="ID_Linefavline">'.$row["Linija"].'</div>
-            <div class="directionfavline">'.$row["Smer"].'</div>
-            <div class="arrivalfavline">'.substr($row["Now_Minutes"], 0,5).' min</div></div>';
-
-
-                }
-            } else {
-                echo "0 results";
-            }?>
-
-
-
-            <form name="addfav" method="post" action="addfavestop.php" method="post">
-                <input  type="hidden" name="ID_User" value="<?php echo @$ID_User; ?>">
-                <input  type="hidden" name="ID_Stop" value="<?php echo @$curID_Stop; ?>">
-                <input  type="submit" name="submit" value="Add Favourite">
-            </form>
-
-        <?php */ ?>
-
-        <?php
-        $sql="SELECT `favouritestops`.`ID_Stop` AS Stanicaa
+    $sql = "SELECT `favouritestops`.`ID_Stop` AS Stanicaa
 FROM favouritestops
 WHERE ((( `favouritestops`.`ID_User`)=\"$ID_User\"));
 ";
 
-        $result = $con->query($sql);
-
+    $result = $con->query($sql);
+    if (!isset($row["Stanicaa"])) {
         ?>
 
+        <div class="busdeparture">
+        <p>Dobrodošli <?php echo $_SESSION['username']; ?>!</p>
+        <br/>
         <?php
 
         if ($result->num_rows > 0) {
             // output data of each row
-            while($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 $stanicaidsearch = $row["Stanicaa"];
                 /* $now = new DateTime();
                  $future = $row["Now_Minutes"];
@@ -84,42 +47,39 @@ WHERE ((( `favouritestops`.`ID_User`)=\"$ID_User\"));
             }
         } else {
             echo " - ";
-        }?>
+        } ?>
 
 
         <?php
-        $sql="SELECT `favouritestops`.`ID_Stop` AS Stanicaa
+        $sql = "SELECT `favouritestops`.`ID_Stop` AS Stanicaa
 FROM favouritestops
 WHERE ((( `favouritestops`.`ID_User`)=\"$ID_User\"));
 ";
 
 
-
-
         $result = $con->query($sql);
-
         ?>
 
         <?php
-        $i=0;
-        $j=0;
+        $i = 0;
+        $j = 0;
 
         if ($result->num_rows > 0) {
             // output data of each row
 
-            $stops=array();
-            while($row = $result->fetch_assoc()) {
+            $stops = array();
+            while ($row = $result->fetch_assoc()) {
 
                 $stanicaidsearch = $row["Stanicaa"];
-                @$stops[$i]=$row["Stanicaa"];
+                @$stops[$i] = $row["Stanicaa"];
                 $i++;
             }
         } else {
             echo "-";
-        }?>
+        } ?>
 
         <?php
-        if(is_array($stops)) {
+        if (is_array($stops)) {
             foreach ($stops as $value) {
                 $stanicaidsearch = $value;
                 if ($stanicaidsearch > 1000) {
@@ -183,97 +143,91 @@ WHERE ((( `favouritestops`.`ID_User`)=\"$ID_User\"));
                     }
 
                     echo '
-    </tbody">
-    </table>';
+    </tbody>
+    </table>
+    </div>';
                 }
 
             }
         }
-        ?>
-    </div>
+    }
 
-
-
-    <div id="container">
-    <?php
-
-    $sqlaa="SELECT `favouritelines`.ID_Line AS Linjija
+    $sqlaa = "SELECT `favouritelines`.ID_Line AS Linjija
 FROM favouritelines
 WHERE ((( `favouritelines`.ID_User)=$ID_User));
 ";
     $result = $con->query($sqlaa);
 
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
+    if (isset($row["Linjija"])) {
 
-            $linijaidsearch = $row["Linjija"];
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+
+                $linijaidsearch = $row["Linjija"];
+            }
+        } else {
+            echo " - ";
         }
-    } else {
-        echo " - ";
-    }
 
-    @$selected_line = $linijaidsearch;
+        @$selected_line = $linijaidsearch;
 
-    $selected_line2=$selected_line;
+        $selected_line2 = $selected_line;
 
 
-    if($selected_line==1){
-        $selected_line2="1A";
-    }
+        if ($selected_line == 1) {
+            $selected_line2 = "1A";
+        }
 
-    if($selected_line==6){
-        $selected_line2="6A";
-    }
+        if ($selected_line == 6) {
+            $selected_line2 = "6A";
+        }
 
-    if($selected_line==8){
-        $selected_line2="8A";
-    }
+        if ($selected_line == 8) {
+            $selected_line2 = "8A";
+        }
 
-    $date=date("H:i:s");
+        $date = date("H:i:s");
 
-    $sql = "SELECT `buslines`.Line_ShortName, `buslines`.Line_Text AS Shorten, `busschedule`.Departure AS Polazak, `busschedule`.Day_Type FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
+        $sql = "SELECT `buslines`.Line_ShortName, `buslines`.Line_Text AS Shorten, `busschedule`.Departure AS Polazak, `busschedule`.Day_Type FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
 WHERE ( (((`buslines`.Line_ShortName)=\"$selected_line\")) OR ((`buslines`.Line_ShortName)=\"$selected_line2\"))  AND ((`buslines`.Line_Side)=1) AND $scheduleday AND `busschedule`.Departure > '$date'
 ORDER BY `busschedule`.`Departure` ASC limit 5";
 
 
-    $result = $con->query($sql);
+        $result = $con->query($sql);
 
-    if (mysqli_num_rows($result) > 0) {
-        // output data of each row
-        while($row = mysqli_fetch_assoc($result)) {
-            $first[]=substr($row["Polazak"], 0,5).' '.$row["Shorten"];
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                $first[] = substr($row["Polazak"], 0, 5) . ' ' . $row["Shorten"];
+            }
+        } else {
+            $first[] = "---";
         }
-    } else {
-        $first[]="---";
-    }
 
 
-
-
-    $sqla = "SELECT `buslines`.Line_ShortName, `buslines`.Line_Text AS Shorten, `busschedule`.Departure AS Polazak, `busschedule`.Day_Type FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
+        $sqla = "SELECT `buslines`.Line_ShortName, `buslines`.Line_Text AS Shorten, `busschedule`.Departure AS Polazak, `busschedule`.Day_Type FROM `buslines` INNER JOIN `busschedule` ON `buslines`.ID_Line = `busschedule`.ID_Line
 WHERE ( (((`buslines`.Line_ShortName)=\"$selected_line\")) OR ((`buslines`.Line_ShortName)=\"$selected_line2\"))  AND ((`buslines`.Line_Side)=0) AND $scheduleday AND `busschedule`.Departure > '$date'
 ORDER BY `busschedule`.`Departure` ASC limit 5";
 
 
-    $result = $con->query($sqla);
+        $result = $con->query($sqla);
 
-    if (mysqli_num_rows($result) > 0) {
-        // output data of each row
-        while($row = mysqli_fetch_assoc($result)) {
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
 
-            $second[]=substr($row["Polazak"], 0,5).' '.$row["Shorten"];
+                $second[] = substr($row["Polazak"], 0, 5) . ' ' . $row["Shorten"];
+            }
+        } else {
+            $second[] = "---";
         }
-    } else {
-        $second[]="---";
-    }
-};
 
-echo '<table class="table table-sm">
+        echo '<table class="table table-sm">
     <thead>
     <tr>
-        <th><h5>Linija '.$linijaidsearch.'</h5></th>
-        <th style="vertical-align: top; text-align: end"><a href="addfaveline.php?delline=1&LineID='.$linijaidsearch.'">x</a></th>
+        <th><h5>Linija ' . $linijaidsearch . '</h5></th>
+        <th style="vertical-align: top; text-align: end"><a href="addfaveline.php?delline=1&LineID=' . $linijaidsearch . '">x</a></th>
     </tr>
     <tr bgcolor="#00bfff">
         <th scope="col" style="width:25%">Vreme u odlasku</th>
@@ -281,23 +235,34 @@ echo '<table class="table table-sm">
     </tr>
     </thead>
     <tbody>';
-$ar1=sizeof($first);
-$ar2=sizeof($second);
+        $ar1 = sizeof($first);
+        $ar2 = sizeof($second);
 
-$tablelength=$ar1;
-if($ar2>=$ar1){
-    $tablelength=$ar2;
-}
+        $tablelength = $ar1;
+        if ($ar2 >= $ar1) {
+            $tablelength = $ar2;
+        }
 
-for($i=0;$i<=$tablelength;$i++){
-    echo '
+        for ($i = 0; $i <= $tablelength; $i++) {
+            echo '
     <tr>
-        <td>';if(isset($first[$i])){echo $first[$i];}; echo '</td>';
-    echo'<td>';if(isset($second[$i])){echo $second[$i];}; echo '</td>';
-    echo'</tr>
+        <td>';
+            if (isset($first[$i])) {
+                echo $first[$i];
+            };
+            echo '</td>';
+            echo '<td>';
+            if (isset($second[$i])) {
+                echo $second[$i];
+            };
+            echo '</td>';
+            echo '</tr>
 
-    ';}
-echo'
+    ';
+        }
+        echo '
     </tbody>
 </table>
 </div>';
+    }
+}
