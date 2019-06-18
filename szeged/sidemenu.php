@@ -22,7 +22,7 @@ WHERE ((( `favouritestops`.`ID_User`)=\"$ID_User\"));
     if (!isset($row["Stanicaa"])) {
         ?>
 
-        <p>Dobrodošli <?php echo $_SESSION['username']; ?>!</p>
+        <p>Welcome <?php echo $_SESSION['username']; ?>!</p>
         <br/>
         <?php
         if ($result->num_rows > 0) {

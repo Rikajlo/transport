@@ -26,7 +26,7 @@ include_once("functions.php");
             <?php
             include("popupnews.php");
             ?>
-            <h2>Spisak taxi kompanija u Subotici:</h2>
+            <h2>Taxi companies in Szeged:</h2>
 
             <div class="busdeparture">
                 <div class="row">
@@ -49,7 +49,7 @@ include_once("functions.php");
 
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted"><a href="tel:' . $row["Telephone_1"] . '">POZOVITE TAXI!</a></small>
+                            <small class="text-muted"><a href="tel:' . $row["Telephone_1"] . '">CALL A TAXI!</a></small>
                         </div>
                     </div>
                 </div>';

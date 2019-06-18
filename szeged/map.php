@@ -28,15 +28,15 @@ include_once("functions.php");
     </div>
     <div class="col-sm-9 content1-right" style="min-height: 100%;">
       <?php
-      $test = "SELECT route_long_name, route_id from routes order by route_short_name"; $result = $con->query($test);
+      $test = "SELECT route_long_name, route_id, route_short_name from routes order by route_short_name"; $result = $con->query($test);
       ?>
       <form name="test" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <select name="routes">
-          <option value="">Select stop</option>
+          <option value="">Select line</option>
           <?php
           while ($row = mysqli_fetch_array($result))
           {
-            echo "<option value='".$row['route_id']."'>".$row['route_long_name']."</option>";
+            echo "<option value='".$row['route_id']."'>".$row['route_short_name']." - ".$row['route_long_name']."</option>";
           }
           ?>
         </select>

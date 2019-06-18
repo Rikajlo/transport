@@ -26,7 +26,7 @@ include_once("functions.php");
             <?php
             include("popupnews.php");
             ?>
-            <h2>Spisak Rent-a-Bike kompanija u Subotici:</h2>
+            <h2>Rent-a-bike Szegeden:</h2>
 
             <div class="busdeparture">
                 <?php
