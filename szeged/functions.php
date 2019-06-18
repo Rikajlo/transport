@@ -63,7 +63,8 @@ function terminusschedule($linesearch){
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
-            echo '<h3>'.$row["route_short_name"].' - '. $row["route_long_name"].'</h3>';
+            echo '<h3>'.$row["route_short_name"].' - '. $row["route_long_name"].'</h3>
+<a href="addfaveline.php?addLine='. $row["route_short_name"].'">Add as favourite!</a>';
             $selected_line=$row["route_id"];
         }
     } else {

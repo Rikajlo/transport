@@ -40,14 +40,14 @@ if(empty($_POST['edit'])) {
     if(!$lineexists) {
         $sql = "INSERT INTO `buslines`(`ID_Line`, `Line_ShortName`, `Line_Name`, `Line_Direction`, `Line_Text`, `Line_Side`)
 VALUES  ('$lineid','$lineshort','$linename','$linedir','$linetext','$lineside')";
-        echo $sql;
-        $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+
+        $result = mysqli_query($con, $sql) or die(mysqli_error($con));
     }
 } else {
     $sql = "UPDATE buslines SET Line_ShortName='$lineshort' ,Line_Name='$linename' ,Line_Direction='$linedir'
  ,Line_Text='$linetext' ,Line_Side='$lineside'
         WHERE ID_Line=$lineid";
-    $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
 }
 

@@ -30,7 +30,7 @@ include_once ('../db_config.php'); ?>
             <?php
             if(!($search)) {
                 $sql = "SELECT * from buslines";
-                $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+                $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($record = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

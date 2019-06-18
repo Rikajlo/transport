@@ -54,13 +54,13 @@ if(!empty($_FILES['fileToUpload']))
 if(empty($_POST['edit'])) {
     $sql = "INSERT INTO taxicompanies(Taxi_Name, Taxi_Description, GPS_Stop_1, GPS_Stop_2, Address_Ln1, Address_Ln2, Telephone_1, Telephone_2, Logo_Image) 
 VALUES ('$taxiname','$taxidescription','$taxistop1','$taxistop2','$taxiaddress1','$taxiaddress2','$taxitelephone1','$taxitelephone2','$taxilogo')";
-    $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 } else {
     $sql = "UPDATE taxicompanies SET Taxi_Name='$taxiname' ,Taxi_Description='$taxidescription' ,GPS_Stop_1='$taxistop1' ,
 GPS_Stop_2='$taxistop2' ,Address_Ln1='$taxiaddress1' ,Address_Ln2='$taxiaddress2'
  ,Telephone_1='$taxitelephone1' ,Telephone_2='$taxitelephone2'
         WHERE ID_Taxi=$taxiid";
-    $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
 }
 

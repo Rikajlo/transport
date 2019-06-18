@@ -32,15 +32,15 @@ include_once ('../db_config.php');
 if(empty($_POST['edit'])) {
     $sql = "INSERT INTO busnews(News_Title, News_Short, News_Full, Time_Expires, Show_Lines, Show_Stops, Show_All) 
 VALUES ('$newstitle','$newsshort','$newsfull','$time_expires','$showlines','$showstops',$showall)";
-    echo $sql;
-    $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+
+    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
 } else {
     $sql = "UPDATE busnews SET News_Title='$newstitle' ,News_Short='$newsshort' ,News_Full='$newsfull' ,Show_All=$showall
  ,Show_Lines='$showlines' ,Show_Stops='$showstops', Time_Expires='$time_expires'
         WHERE ID_News=$newsid";
-    echo $sql;
-    $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+
+    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
 }
 

@@ -63,7 +63,8 @@ function terminusschedule($linesearch){
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
-            echo '<h3>'.$row["Line_ShortName"].' - '. $row["Line_Name"].'</h3>';
+            echo '<h3>'.$row["Line_ShortName"].' - '. $row["Line_Name"].'</h3>
+<a href="addfaveline.php?addLine='. $row["Line_ShortName"].'">Dodaj u favorite!</a>';
         }
     } else {
         echo "Line not selected!";

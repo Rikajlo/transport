@@ -9,7 +9,7 @@ include_once("functions.php");
 <head>
     <?php include_once("include/meta.php"); ?>
 
-    <title>Stanični red vožnje gradskog prevoza u Subotici</title>
+    <title>Szeged Transit</title>
 
     <link rel="stylesheet" href="../css/newest.css">
 
@@ -27,9 +27,11 @@ include_once("functions.php");
         </div>
         <div class="col-sm-9 content1-right" style="min-height: 100%;">
             <?php
-            //include("popupnews.php");
+            include("popupnews.php");
             ?>
-            <h2>EZ SZEGED!"</h2>
+            <h2>EZ SZEGED.
+
+            Select a stop to see the departures from it.</h2>
 
             <div class="busdeparture">
 
@@ -82,7 +84,7 @@ include_once("functions.php");
    and stop_times.trip_id=trips.trip_id
  AND(
 (
-DAYOFWEEK('2019-01-13') = 1 AND calendar.sunday = 1
+calendar.".strtolower(date('l'))." = 1
 )
 ) AND stop_times.departure_time > '$date' AND NOT EXISTS(
 SELECT
@@ -90,17 +92,23 @@ SELECT
 FROM
 calendar_dates
 WHERE
-calendar_dates.date ='2019-01-13'
+calendar_dates.date ='".date('Y-m-d')."'
                       and calendar_dates.date between
 calendar.start_date and calendar.end_date
                       and
 calendar.service_id=calendar_dates.service_id
                       and calendar_dates.exception_type=2)
                       order by stop_times.departure_time asc limit 20";
-                    echo $sql;
+
 
                     echo '<h3> Departures from '.$stopname.'</h3>';
-
+ if(isset($_SESSION['username'])){?>
+                <form name="addfav" method="post" action="addfavestop.php" method="post">
+                    <input  type="hidden" name="UserID" value="<?php echo @$_SESSION['ID_User'] ?>">
+                    <input  type="hidden" name="StopID" value="<?php echo @$stopname; ?>">
+                    <input  type="submit" name="submit" value="Add this stop as a favourite!">
+                </form>
+                <?php };
                     echo '    <table class="table">
   <tbody>';
                     $result = $con->query($sql);

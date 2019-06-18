@@ -65,7 +65,7 @@ if((@$searchtaxiName or @$searchtaxiDescription or @$searchAddress or @$searchte
             <?php
             if(!($search)) {
                 $sql = "SELECT * from taxicompanies";
-                $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+                $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($record = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -103,7 +103,7 @@ if((@$searchtaxiName or @$searchtaxiDescription or @$searchAddress or @$searchte
 
 
                 $sql = "SELECT * from taxicompanies $clause;";
-                $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+                $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($record = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

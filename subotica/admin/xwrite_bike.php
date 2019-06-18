@@ -49,12 +49,12 @@ if(!empty($_FILES['fileToUpload']))
 if(empty($_POST['edit'])) {
     $sql = "INSERT INTO bikecompanies(bike_Name, bike_Description, Address_Ln1, Address_Ln2, Telephone_1, Telephone_2, Logo_Image) 
 VALUES ('$bikename','$bikedescription','$bikeaddress1','$bikeaddress2','$biketelephone1','$biketelephone2','$bikelogo')";
-    $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 } else {
     $sql = "UPDATE bikecompanies SET bike_Name='$bikename' ,bike_Description='$bikedescription' ,Address_Ln1='$bikeaddress1' ,Address_Ln2='$bikeaddress2'
  ,Telephone_1='$biketelephone1' ,Telephone_2='$biketelephone2'
         WHERE ID_bike=$bikeid";
-    $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
 }
 

@@ -105,7 +105,7 @@ include_once("functions.php");
                     ?>
                     <?php if(isset($_SESSION['username'])){?>
                         <form name="addfav" method="post" action="addfavestop.php" method="post">
-                            <input  type="hidden" name="UserID" value="<?php echo @$_SESSION['UserID'] ?>">
+                            <input  type="hidden" name="UserID" value="<?php echo @$_SESSION['ID_User'] ?>">
                             <input  type="hidden" name="StopID" value="<?php echo @$curStopID; ?>">
                             <input  type="submit" name="submit" value="Dodaj ovu stanicu kao omiljenu">
                         </form>

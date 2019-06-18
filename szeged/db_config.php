@@ -3,8 +3,7 @@
 // Connection to the database, and query related stuff to be included.
 // THIS FILE IS FINISHED AND NEEDS NO FURTHER EDITING.
 
-$con = mysqli_connect("localhost","phpmyadmin","Admin2019_","szeged");
-$connection = mysqli_connect("localhost","phpmyadmin","Admin2019_","szeged");
+$con = mysqli_connect("localhost","daniel","2104996820170","szeged");
 
 mysqli_query($con,"SET NAMES utf8") or die (mysqli_error($con));
 mysqli_query($con,"SET CHARACTER SET utf8") or die (mysqli_error($con));

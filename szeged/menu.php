@@ -3,29 +3,29 @@
 echo '
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="index.php">Javni Prevoz Subotica</a>
+  <a class="navbar-brand" href="index.php">Public Transit Szeged</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Početna <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Start <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="buslines.php">Red Vožnje</a>
+        <a class="nav-link" href="buslines.php">Timetable</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="taxi.php">Taxi</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="rentabike.php">Rent-a-Bike</a>
+        <a class="nav-link" href="bike.php">Rent-a-Bike</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="news.php">News</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="szeged/index.php">Visit Szeged!</a>
+        <a class="nav-link" href="../subotica/index.php">Visit Subotica!</a>
       </li>';
         if(isset($_SESSION['ID_User'])){
         echo'
