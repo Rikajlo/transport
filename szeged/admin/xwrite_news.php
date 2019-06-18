@@ -12,7 +12,7 @@ include_once ('../db_config.php');
 @$newsfull = stripslashes($_POST['newsfull']);
 @$newsfull = mysqli_real_escape_string($con,$newsfull);
 
-@$time_expires = stripslashes($_POST['time_expires']);
+@$time_expires = stripslashes($_POST['timeexpires']);
 @$time_expires = mysqli_real_escape_string($con,$time_expires);
 
 @$showlines = stripslashes($_POST['showlines']);

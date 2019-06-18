@@ -20,4 +20,13 @@ echo '
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/newest.css">
 
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "76989cdc-dba6-4b47-ae6e-5c036549d35f",
+    });
+  });
+</script>
 ';

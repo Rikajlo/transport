@@ -157,7 +157,7 @@ WHERE ((( `favouritelines`.ID_User)=$ID_User));
                 $date = date("H:i:s");
 
                 $sql = "select stop_times.departure_time as depart, trips.trip_headsign as headsign from calendar, stop_times, trips where '".date('Y-m-d')."' between calendar.start_date and calendar.end_date and trips.route_id=$selected_line and stop_times.stop_sequence=1 and trips.direction_id=0 and calendar.service_id=trips.service_id and stop_times.trip_id=trips.trip_id and ( calendar.".strtolower(date('l'))."=1 ) and not exists (select 1 from calendar_dates where calendar_dates.date='".date('Y-m-d')."' and calendar_dates.date between calendar.start_date and calendar.end_date and calendar.service_id=calendar_dates.service_id and calendar_dates.exception_type=2) and stop_times.departure_time>'$date' order by stop_times.departure_time asc limit 5";
-               
+
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
