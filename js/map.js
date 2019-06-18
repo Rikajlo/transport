@@ -1,10 +1,23 @@
 /* OSM & OL example code provided by https://mediarealm.com.au/ */
 var map;
-var mapLat = 46.2530;
-var mapLng = 20.1414;
-var mapDefaultZoom = 14;
-
-function initialize_map() {
+//var mapLat = 46.2530;
+//var mapLon = 20.1414;
+var mapDefaultZoom = 15;
+function initGeolocation()
+{
+    if( navigator.geolocation )
+    {
+        // Call getCurrentPosition with success and failure callbacks
+        navigator.geolocation.getCurrentPosition( success );
+    }
+}
+function success(position)
+{
+    mapLon = position.coords.longitude;
+    mapLat = position.coords.latitude
+}
+function initialize_map(mapLat, mapLon) {
+    initGeolocation();
     map = new ol.Map({
         target: "map",
         layers: [
@@ -18,18 +31,20 @@ function initialize_map() {
             })
         ],
         view: new ol.View({
-            center: ol.proj.fromLonLat([mapLng, mapLat]),
+            center: ol.proj.fromLonLat([mapLon, mapLat]),
             zoom: mapDefaultZoom
         })
     });
 }
 
-function add_map_point(lat, lng) {
+function add_map_point(lat, lon, stop_name) {
     var vectorLayer = new ol.layer.Vector({
         source:new ol.source.Vector({
-            features: [new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.transform([parseFloat(lng), parseFloat(lat)], 'EPSG:4326', 'EPSG:3857')),
-            })]
+            features: [
+                new ol.Feature({
+                    geometry: new ol.geom.Point(ol.proj.transform([parseFloat(lon), parseFloat(lat)], 'EPSG:4326', 'EPSG:3857')),
+                })
+                ]
         }),
         style: new ol.style.Style({
             image: new ol.style.Icon({

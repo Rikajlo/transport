@@ -1,11 +1,23 @@
 <?php
 require_once("db_config.php");
 
-// Select all the rows in the markers table
-$sql = "SELECT * FROM stops WHERE 1";
-$result = $con->query($sql);
-while ($row = @mysqli_fetch_assoc($result)){
-  echo 'add_map_point('. $row['stop_lat'] .', '. $row['stop_lon'] . ');';
+if(isset($_POST["routes"])) {
+  $route = $_POST["routes"];
+
+  $sql = "SELECT stops.* FROM stops 
+            INNER JOIN stop_times ON stops.stop_id=stop_times.stop_id
+            INNER JOIN trips ON stop_times.trip_id=trips.trip_ID
+            INNER JOIN routes ON routes.route_id=trips.route_id
+            WHERE routes.route_id='$route' ";
+  $result = $con->query($sql);
+  while ($row = mysqli_fetch_assoc($result)) {
+    echo ' add_map_point('.$row['stop_lat'].', '.$row['stop_lon'].', \''.$row['stop_name'].'\');';
+  }
 }
-?>
-add_map_point(46.2530, 20.1414);
+else {
+  $sql = "SELECT * FROM stops WHERE 1";
+  $result = $con->query($sql);
+  while ($row = @mysqli_fetch_assoc($result)){
+    echo ' add_map_point('.$row['stop_lat'].', '.$row['stop_lon'].', \''.$row['stop_name'].'\');';
+  }
+}
