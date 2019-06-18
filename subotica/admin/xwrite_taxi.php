@@ -1,4 +1,6 @@
 <?php
+@session_start();
+include_once('auth.php');
 include_once ('../db_config.php');
 
 
@@ -64,7 +66,7 @@ GPS_Stop_2='$taxistop2' ,Address_Ln1='$taxiaddress1' ,Address_Ln2='$taxiaddress2
 
 }
 
-header("Location: list_taxis.php");
+header("Location: list_taxi.php");
 exit();
 
 ?>

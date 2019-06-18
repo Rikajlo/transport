@@ -1,4 +1,6 @@
 <?php
+@session_start();
+include_once('auth.php');
 include_once ('../db_config.php'); ?>
 
 <html>
@@ -23,13 +25,13 @@ include_once ('../db_config.php'); ?>
                            value="'.$record['News_Title'].'">
 
                     <label class="w3-text-teal"><b>Kratak opis:</b></label>
-                    <input class="w3-input w3-border w3-light-grey" type="textarea" required="required" name="newsshort" >
+                    <input class="w3-input w3-border w3-light-grey" type="text" required="required" name="newsshort" >
 
                     <label class="w3-text-teal"><b>Cela vest:</b></label>
-                    <input class="w3-input w3-border w3-light-grey" type="textarea" required="required" name="newsfull" >
+                    <input class="w3-input w3-border w3-light-grey" type="text" required="required" name="newsfull" >
 
                     <label class="w3-text-teal"><b>Važi do:</b></label>
-                    <input class="w3-input w3-border w3-light-grey" type="datetime" name="timeexpires" >
+                    <input class="w3-input w3-border w3-light-grey" type="text" name="timeexpires" >
 
                     <label class="w3-text-teal"><b>Linije: (Kod linije)</b></label>
                     <input class="w3-input w3-border w3-light-grey" type="text"  name="showlines" value="*">

@@ -388,7 +388,7 @@ function selectlines(){
 
     global $con;
 
-    $sql = "SELECT DISTINCT Line_ShortName FROM `buslines`";
+    $sql = "SELECT DISTINCT route_short_name FROM `routes`";
     $result = $con->query($sql);
 
     if ($result->num_rows > 0) {

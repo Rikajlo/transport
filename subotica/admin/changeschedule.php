@@ -1,4 +1,7 @@
 <?php
+@session_start();
+include_once('auth.php');
+
 include('db_config.php');
 include('adminfunctions.php');
 
