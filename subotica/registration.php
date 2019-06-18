@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head><meta charset="UTF-8">
     <?php include_once("include/meta.php"); ?>
 
     <link rel="stylesheet" href="../css/style.css" />

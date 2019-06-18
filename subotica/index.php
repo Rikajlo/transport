@@ -6,7 +6,7 @@ include_once("functions.php");
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta charset="UTF-8">
     <?php include_once("include/meta.php"); ?>
 
     <title>Stanični red vožnje gradskog prevoza u Subotici</title>

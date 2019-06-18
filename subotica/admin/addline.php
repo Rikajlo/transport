@@ -10,7 +10,7 @@ if ($_SESSION['isadmin']!=true){
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta charset="UTF-8">
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
