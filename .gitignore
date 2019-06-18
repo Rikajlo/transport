@@ -1,6 +1,8 @@
 #dok ne uskladimo naloge
 **/db_config.php
 */db_config.php
+subotica/db_config.php
+szeged/db_config.php
 
 # Created by https://www.gitignore.io/api/phpstorm+all
 # Edit at https://www.gitignore.io/?templates=phpstorm+all
