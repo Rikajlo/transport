@@ -24,6 +24,9 @@ echo '
       <li class="nav-item">
         <a class="nav-link" href="news.php">News</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="map.php">Map</a>
+      </li>
        <li class="nav-item">
         <a class="nav-link" href="../subotica/index.php">Visit Subotica!</a>
       </li>';
