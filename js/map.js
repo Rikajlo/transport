@@ -10,7 +10,10 @@ function initialize_map() {
         layers: [
             new ol.layer.Tile({
                 source: new ol.source.OSM({
-                    url: "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    //url: "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    //url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"
+                    url: "http://a.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png"
+                    //url: "https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
                 })
             })
         ],

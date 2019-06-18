@@ -3,10 +3,6 @@ include_once("db_config.php");
 include_once("functions.php");
 header("Content-Type: text/html; charset=%CharSet%", true);
 ?>
-
-
-// News page, all news can be also seen in the newsfeed.php page, without any surrounding menus.
-?>
 <!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8">

@@ -1,9 +1,6 @@
 <?php
 include_once("db_config.php");
 include_once("functions.php");
-
-
-// News page, all news can be also seen in the newsfeed.php page, without any surrounding menus.
 ?>
 <!DOCTYPE html>
 <html>
