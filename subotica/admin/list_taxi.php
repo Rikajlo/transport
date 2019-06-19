@@ -46,7 +46,7 @@ if((@$searchtaxiName or @$searchtaxiDescription or @$searchAddress or @$searchte
                 <div class="w3-quarter"><input class="w3-input w3-light-gray" type="text" name="telephone1" placeholder="Telefon 1" /></div>
             </div>
             <div class="w3-quarter">
-                <input type="submit" class="w3-button w3-indigo w3-block"name="submit" value="Search customers!" />
+                <input type="submit" class="w3-button w3-indigo w3-block"name="submit" value="Pretraga!" />
             </div>
         </form>
     </div>

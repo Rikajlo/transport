@@ -35,7 +35,6 @@ include_once ('../include/notify.php');
 if(empty($_POST['edit'])) {
     $sql = "INSERT INTO busnews(News_Title, News_Short, News_Full, Time_Expires, Show_Lines, Show_Stops, Show_All) 
 VALUES ('$newstitle','$newsshort','$newsfull','$time_expires','$showlines','$showstops',$showall)";
-    echo $sql;
     $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
     if($result){
