@@ -1,3 +1,0 @@
-DirectoryIndex index.php index.html
-
-IndexOptions +Charset=UTF-8

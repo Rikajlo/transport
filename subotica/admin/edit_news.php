@@ -46,7 +46,7 @@ include_once ('../db_config.php'); ?>
                     <input class="w3-input w3-border w3-light-grey" type="textarea" required="required" name="newsfull" value="'.$record['News_Full'].'">
 
                     <label class="w3-text-teal"><b>Važi do:</b></label>
-                    <input class="w3-input w3-border w3-light-grey" type="text" name="time_expires" value="'.$record['Time_Expires'].'">
+                    <input class="w3-input w3-border w3-light-grey" type="text" name="timeexpires" value="'.$record['Time_Expires'].'">
 
                     <label class="w3-text-teal"><b>Linije: (Kod linije)</b></label>
                     <input class="w3-input w3-border w3-light-grey" type="text"  name="showlines" value="'.$record['Show_Lines'].'">
