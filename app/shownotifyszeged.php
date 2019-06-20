@@ -29,7 +29,7 @@ if(!isset($_SESSION['isadminszeged'])){
             <th>Views</th>
         </tr>
         <?php
-        $sql = "SELECT * from notifications";
+        $sql = "SELECT * from notifications ORDER BY ID_Notification DESC";
         $result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
         if (mysqli_num_rows($result) > 0) {
